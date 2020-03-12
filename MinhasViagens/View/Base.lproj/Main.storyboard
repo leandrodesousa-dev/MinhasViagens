@@ -10,7 +10,7 @@
         <!--Minhas Viagens-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MinhasViagens" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MinhasViagensViewController" customModule="MinhasViagens" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,8 +38,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Mc9-YT-guA"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mGr-lz-Y7b"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ph5-G4-XHK"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="al5-nV-M6L"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -68,7 +68,7 @@
         <!--Mapa-->
         <scene sceneID="VSj-uX-wns">
             <objects>
-                <viewController id="Uhq-Bu-W3L" sceneMemberID="viewController">
+                <viewController id="Uhq-Bu-W3L" customClass="MapaViewController" customModule="MinhasViagens" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XC3-Up-Rau">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,6 +87,9 @@
                         <viewLayoutGuide key="safeArea" id="e1E-AJ-ZoC"/>
                     </view>
                     <navigationItem key="navigationItem" title="Mapa" id="lba-a6-Pfc"/>
+                    <connections>
+                        <outlet property="mapaView" destination="Wv5-4z-PHn" id="N95-4F-Q4L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="95o-GI-Sbv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
