@@ -51,4 +51,18 @@ extension MinhasViagensViewController: UITableViewDelegate {
         }
         tableView.reloadData()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "verLocal", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "verLocal" {
+            if let controller = segue.destination as? MapaViewController,
+                let indiceRecuperado = sender as? Int {
+                controller.viagem = lugaresQueViajei[indiceRecuperado]
+                controller.indiceSelecionado = indiceRecuperado
+            }
+        }
+    }
 }

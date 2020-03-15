@@ -56,7 +56,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kgh-nn-Yrh">
                             <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <connections>
-                                <segue destination="Uhq-Bu-W3L" kind="show" id="dxj-hq-Not"/>
+                                <segue destination="Uhq-Bu-W3L" kind="show" identifier="verLocal" id="dxj-hq-Not"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -78,6 +78,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Wv5-4z-PHn">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Uhq-Bu-W3L" id="Ygr-lB-wDy"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
