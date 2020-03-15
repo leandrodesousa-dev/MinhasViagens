@@ -10,17 +10,24 @@ import UIKit
 
 class MinhasViagensViewController: UIViewController {
     
+    // MARK: Outlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: Propiedades
     
-    let lugaresQueViajei: [String] = ["Manaus", "Belo Horizonte", "São Paulo", "Curitiba"]
+    var lugaresQueViajei: [Dictionary<String, String>] = []
     
     // MARK: Ciclo de vida da view
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        lugaresQueViajei = ArmazenamentoDeDados().listarViagens()
+        tableView.reloadData()
+    }
 }
 
     // MARK: UITableViewDataSource
@@ -32,7 +39,16 @@ extension MinhasViagensViewController: UITableViewDataSource {
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = lugaresQueViajei[indexPath.row]
+        cell.textLabel?.text = lugaresQueViajei[indexPath.row]["nome"]
         return cell
+    }
+}
+
+extension MinhasViagensViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+             lugaresQueViajei = ArmazenamentoDeDados().removerViagens(row: indexPath.row)
+        }
+        tableView.reloadData()
     }
 }

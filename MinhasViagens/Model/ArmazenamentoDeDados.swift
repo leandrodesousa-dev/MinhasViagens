@@ -27,7 +27,7 @@ class ArmazenamentoDeDados {
         
         viagens.append(viagem)
         getDefaults().set(viagens, forKey: chaveDeViagens)
-        
+        getDefaults().synchronize()
     }
     
     func listarViagens() -> [Dictionary<String, String>] {
@@ -39,7 +39,11 @@ class ArmazenamentoDeDados {
         }
     }
     
-    func removerViagens() {
-        
+    func removerViagens(row: Int) -> [Dictionary<String, String>] {
+        var todasAsViagens = listarViagens()
+        todasAsViagens.remove(at: row)
+        getDefaults().set(todasAsViagens, forKey: chaveDeViagens)
+        getDefaults().synchronize()
+        return todasAsViagens
     }
 }
