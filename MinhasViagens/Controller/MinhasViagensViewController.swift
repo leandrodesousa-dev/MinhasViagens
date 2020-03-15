@@ -8,11 +8,24 @@
 
 import UIKit
 
-class MinhasViagensViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MinhasViagensViewController: UIViewController {
+    
+    // MARK: Propiedades
     
     let lugaresQueViajei: [String] = ["Manaus", "Belo Horizonte", "São Paulo", "Curitiba"]
     
+    // MARK: Ciclo de vida da view
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
+}
+
+    // MARK: UITableViewDataSource
+
+extension MinhasViagensViewController: UITableViewDataSource {
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return lugaresQueViajei.count
     }
@@ -22,10 +35,4 @@ class MinhasViagensViewController: UIViewController, UITableViewDelegate, UITabl
         cell.textLabel?.text = lugaresQueViajei[indexPath.row]
         return cell
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
 }
