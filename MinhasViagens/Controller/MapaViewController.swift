@@ -30,26 +30,10 @@ class MapaViewController: UIViewController, MKMapViewDelegate {
         } else {
             configuracaoDeLocalizacao()
         }
-
+        
         let reconhecedorDeGesto = UILongPressGestureRecognizer(target: self, action: #selector(gestoDeTocarNoMapa(gesture:)))
         reconhecedorDeGesto.minimumPressDuration = 1
         mapaView.addGestureRecognizer(reconhecedorDeGesto)
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-
-        return annotationView
     }
     
     // MARK: Private methods
@@ -114,12 +98,24 @@ class MapaViewController: UIViewController, MKMapViewDelegate {
                 } else {
                     print(error ?? "")
                 }
-                }
-
             }
-            
         }
+    }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        return annotationView
+    }
 }
 
 // MARK: CLLocationManagerDelegate
@@ -155,5 +151,11 @@ extension MapaViewController: CLLocationManagerDelegate {
             
             present(alertaController, animated: true)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let localUsuario = locations.last else { return }
+        
+        setRegiao(localUsuario.coordinate.latitude, localUsuario.coordinate.longitude)
     }
 }

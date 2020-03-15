@@ -30,24 +30,25 @@ class MinhasViagensViewController: UIViewController {
     }
 }
 
-    // MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 
 extension MinhasViagensViewController: UITableViewDataSource {
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return lugaresQueViajei.count
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = lugaresQueViajei[indexPath.row]["nome"]
         return cell
     }
 }
 
+// MARK: UITableViewDelegate
 extension MinhasViagensViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-             lugaresQueViajei = ArmazenamentoDeDados().removerViagens(row: indexPath.row)
+            lugaresQueViajei = ArmazenamentoDeDados().removerViagens(row: indexPath.row)
         }
         tableView.reloadData()
     }
